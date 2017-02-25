@@ -6,6 +6,8 @@ from pyparsing import nums,alphas,alphanums,Regex
 from pyparsing import Literal, Word, Group, Optional, ZeroOrMore, OneOrMore, Forward
 from sys import stdin, argv
 
+class PopError(IndexError)
+
 stack = [ ]
 
 def push(f):
@@ -24,7 +26,7 @@ def pop(f):
         try:
             elem1 = stack.pop()
         except IndexError as ie:
-            raise IndexError(ie)
+            raise PopError(ie)
 
         args = list(args)
         args.append(elem1)
@@ -44,12 +46,12 @@ def pop2(f):
         try:
             elem1 = stack.pop()
         except IndexError as ie:
-            raise IndexError(ie)
+            raise PopError(ie)
 
         try:
             elem2 = stack.pop()
         except IndexError as ie:
-            raise IndexError(ie)
+            raise PopError(ie)
 
         args = list(args)
         args.append(elem1)
@@ -70,17 +72,17 @@ def pop3(f):
         try:
             elem1 = stack.pop()
         except IndexError as ie:
-            raise IndexError(ie)
+            raise PopError(ie)
 
         try:
             elem2 = stack.pop()
         except IndexError as ie:
-            raise IndexError(ie)
+            raise PopError(ie)
 
         try:
             elem3 = stack.pop()
         except IndexError as ie:
-            raise IndexError(ie)
+            raise PopError(ie)
 
         args = list(args)
         args.append(elem1)
@@ -197,7 +199,7 @@ def tupl_action(s, l, t, op1, first, op2):
             elem = stack.pop()
             lst.append(elem)
         except IndexError:
-            berak
+            break
 
     return [ 'tuple', lst ]
 
